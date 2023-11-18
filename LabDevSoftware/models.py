@@ -3,7 +3,7 @@ from django.db import models
 
 
 class Demanda(models.Model):
-    tituloDemanda = models.CharField(max_length=40, verbose_name='Nome')
+    tituloDemanda = models.CharField(max_length=40, verbose_name='Titulo')
     descricaoDemanda = models.CharField(max_length=200, verbose_name='Descrição')
     prioridade = models.CharField(max_length=30, verbose_name='Prioridade')
 
