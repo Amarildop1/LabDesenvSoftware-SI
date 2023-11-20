@@ -1,5 +1,7 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
 {% block titulo %}
     <title> Lista de Demandas </title>
 
@@ -8,7 +10,7 @@
 
 {% block conteudo %}
     <div>
-        <h1> Lista de Demandas </h1>
+        <h2> Lista de Demandas </h2>
         <ul>
             {% for demanda in object_list %}
                 <li>

@@ -1,10 +1,22 @@
 {% extends 'base.html' %}
 
+{% load static %}
 
-{% block conteudo %}
+    {% block titulo %}
+        <title> Início | Sistema de Gestão de Demandas </title>
+    {% endblock %}
 
-    <p> Lab Dev Software </p>
+    <body>
+        {% block conteudo %}
 
-{% endblock %}
+            <h2> Lab Dev Software </h2>
+            <p> Cards de Tela Inicial </p>
+            <ul>
+                <li>Criar</li>
+                <li>Listar</li>
+                <li>Mensagem</li>
+            </ul>
 
+        {% endblock %}
+    </body>
 

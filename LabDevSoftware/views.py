@@ -1,12 +1,19 @@
 from django.shortcuts import render
 # Create your views here.
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import TemplateView, ListView, DetailView, CreateView
 
 from .models import Demanda
+
+class Login(TemplateView):
+        template_name = 'login.html'
 
 class PaginaInicial(TemplateView):
         template_name = 'index.html'
 
+class DemandaCreateView(CreateView):
+        model = Demanda
+        template_name = 'demanda-criar.html'
+        fields = ['tituloDemanda', 'descricaoDemanda','prioridade']
 
 class DemandaListView(ListView):
         model = Demanda
