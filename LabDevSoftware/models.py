@@ -1,17 +1,33 @@
 from django.db import models
 # Create your models here.
 from auditlog.registry import auditlog
+from django.urls import reverse
 
 class Demanda(models.Model):
-    tituloDemanda = models.CharField(max_length=40, verbose_name='Titulo')
-    descricaoDemanda = models.CharField(max_length=200, verbose_name='Descrição')
-    prioridade = models.CharField(max_length=30, verbose_name='Prioridade')
+    tituloDemanda = models.CharField(max_length=255)
+    descricaoDemanda = models.TextField()
+
+    PRIORITY_CHOICES = [
+        ('baixa', 'Baixa'),
+        ('normal', 'Normal'),
+        ('urgente', 'Urgente'),
+        ('maxima', 'Máxima'),
+    ]
+    prioridade = models.CharField(max_length=20, choices=PRIORITY_CHOICES)
+
+    status = models.CharField(max_length=20, choices=[('pendente', 'Pendente'), ('em_andamento', 'Em Andamento'), ('concluida', 'Concluída')])
+    prazo = models.DateField()
+    dataDeCriacao = models.DateTimeField(auto_now_add=True)
+    dataDeEncerramento = models.DateTimeField(null=True, blank=True)
 
     class Meta:
-        ordering = ['tituloDemanda']
+        ordering = ['prazo', 'dataDeCriacao']
 
     def __str__(self) -> str:
         return self.tituloDemanda
+    
+    def get_absolute_url(self):
+        return reverse('demanda-detail', args=[str(self.id)])
 
 auditlog.register(Demanda)
 
@@ -24,3 +40,4 @@ class Mensagem(models.Model):
         return self.tituloMensagem
 
 auditlog.register(Mensagem)
+

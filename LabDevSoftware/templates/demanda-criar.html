@@ -13,6 +13,41 @@
         <h3> Criação de Demandas </h3>
             <p> Form de criação de demandas </p>
     </div>
+    
+<!-- TESTANDO -->
+<!-- demanda-criar.html -->
+  
+  <form method="post" action="{% url 'demanda-criar' %}">
+    {% csrf_token %}
+    
+    {{ form.tituloDemanda.errors }}
+        <label for="{{ form.tituloDemanda.id_for_label }}">Título:</label>
+        {{ form.tituloDemanda }}
+        
+        {{ form.descricaoDemanda.errors }}
+        <label for="{{ form.descricaoDemanda.id_for_label }}">Descrição:</label>
+        {{ form.descricaoDemanda }}
+        
+        {{ form.prioridade.errors }}
+        <label for="{{ form.prioridade.id_for_label }}">Prioridade:</label>
+        {{ form.prioridade }}
+        
+        {{ form.status.errors }}
+        <label for="{{ form.status.id_for_label }}">Status:</label>
+        {{ form.status }}
+        
+        {{ form.prazo.errors }}
+        <label for="{{ form.prazo.id_for_label }}">Prazo:</label>
+        {{ form.prazo }}
+        
+        {{ form.dataDeEncerramento.errors }}
+        <label for="{{ form.dataDeEncerramento.id_for_label }}">Data de Encerramento:</label>
+        {{ form.dataDeEncerramento }}
+
+    <button type="submit">Criar Demanda</button>
+  </form>
+
+<!--  -->
 
 
 
@@ -21,3 +56,4 @@
     </div>
 
 {% endblock %}
+
