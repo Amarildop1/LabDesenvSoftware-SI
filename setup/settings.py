@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'LabDevSoftware.apps.LabdevsoftwareConfig',
     'crispy_forms',
+    'auditlog',
 ]
 
 MIDDLEWARE = [

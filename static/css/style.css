@@ -99,9 +99,9 @@ footer {
     box-sizing: content-box;
 }
 
-/* footer > div {
+footer > div {
     margin-bottom: 0px;
-} */
+}
 
 footer div.itemRodape{
     padding: 1rem;
