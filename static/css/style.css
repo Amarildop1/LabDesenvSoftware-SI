@@ -1,0 +1,109 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+}
+
+a{
+    text-decoration: none;
+}
+
+/* Título da página inicial */
+div.topo{
+    text-align: center;
+    margin: 2rem;
+}
+
+#logo-link{
+    color: white;
+}
+
+div#texto-da-logo{
+    margin: 1rem;
+    padding: 0;
+}
+
+.logo-texto{
+    margin: 0;
+}
+
+
+.barraMenu{
+    width: 100%;
+    justify-content: space-between;
+}
+
+ul.opcoesDoMenu{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    margin: 1rem;
+}
+ul.opcoesDoMenu li{
+    margin-left: 3rem;
+}
+
+#usuarioLogado{
+    padding-right: 25px;
+    color: white;
+    margin: 0;
+}
+p.usuarioLogado{
+    margin: 0;
+}
+
+
+
+div#cards-principais a{
+    color: white;
+}
+
+
+div.card-body{
+    height: 8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+div.cardHover:hover{
+    background-color: white;
+    color: black;
+}
+
+/* div.cardHover2:hover{
+    background-color: #6C757D;
+    color: white;
+} */
+
+
+#btnVoltar{
+    margin-bottom: .5rem; 
+    padding: 5rem;
+    width: 50rem;
+}
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+    background-color: #212529;
+    color: #fff;
+    margin-top: auto;
+    box-sizing: content-box;
+}
+
+/* footer > div {
+    margin-bottom: 0px;
+} */
+
+footer div.itemRodape{
+    padding: 1rem;
+}
+
