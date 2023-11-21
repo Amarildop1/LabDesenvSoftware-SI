@@ -10,14 +10,27 @@
 
 {% block conteudo %}
     <div>
-        <h3> Lista de Demandas </h3>
-        <ul>
-            {% for demanda in object_list %}
-                <li>
-                    {{ demanda.tituloDemanda }}
-                </li>
-            {% endfor %}
-        </ul>
+        <h3> Lista de todas as Demandas </h3>
+        <table class="tabela-listar-demandas">
+            <thead>
+                <tr>
+                    <th> Título </th>
+                    <th> Prioridade </th>
+                    <th> Status </th>
+                    <th> Prazo </th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for demanda in object_list %}
+                    <tr>
+                        <td><a href="{{ demanda.get_absolute_url }}" class="list-link">{{ demanda.tituloDemanda }}</a></td>
+                        <td> {{ demanda.prioridade }} </td>
+                        <td> {{ demanda.status }} </td>
+                        <td> {{ demanda.prazo }} </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 
     <div style="margin-bottom: .5rem; padding: 0.5%;">
@@ -25,5 +38,4 @@
     </div>
     
 {% endblock %}
-
 

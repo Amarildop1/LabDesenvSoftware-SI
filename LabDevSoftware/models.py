@@ -27,7 +27,8 @@ class Demanda(models.Model):
         return self.tituloDemanda
     
     def get_absolute_url(self):
-        return reverse('demanda-detail', args=[str(self.id)])
+        return reverse('demanda-detail', kwargs={'pk': self.pk})
+        """ return reverse('demanda-detail', args=[str(self.id)]) """
 
 auditlog.register(Demanda)
 

@@ -9,18 +9,20 @@
 
 
 {% block conteudo %}
-    <div>
-        <h3> Detalhamento da Demanda </h3>
-        
-        <p>Título: {{ object.tituloDemanda }}</p>
-        <p>Descrição: {{ object.descricaoDemanda }}</p>
-        <p>Prioridade: {{ object.prioridade }}</p>
-        <p>Status: {{ object.status }}</p>
-        <p>Prazo: {{ object.prazo }}</p>
-        <p>Data de Criação: {{ object.dataDeCriacao }}</p>
-        <p>Data de Encerramento: {{ object.dataDeEncerramento }}</p>
+    <h3> Detalhamento da Demanda </h3>
+    <div class="detalhe-demanda">        
+        <p> <strong>Título:</strong> {{ object.tituloDemanda }} </p>
+        <p> <strong>Descrição:</strong> {{ object.descricaoDemanda }} </p>
+        <p> <strong>Prioridade:</strong> {{ object.prioridade }} </p>
+        <p> <strong>Status:</strong> {{ object.status }} </p>
+        <p> <strong>Prazo:</strong> {{ object.prazo }} </p>
+        <p> <strong>Data de Criação:</strong> {{ object.dataDeCriacao }} </p>
+        <p> <strong>Data de Encerramento:</strong> {{ object.dataDeEncerramento }} </p>
     </div>
 
+    <div style="margin-bottom: .5rem; padding: 0.5%;">
+        <button class="button-options" value="voltar" onclick="history.go(-1)">Voltar</button>
+    </div>
 {% endblock %}
 
 

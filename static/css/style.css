@@ -8,9 +8,55 @@ html, body {
     margin: 0;
 }
 
+h3{
+    text-align: center;
+    margin: 1.5rem;
+}
+
 a{
     text-decoration: none;
 }
+
+ul li{
+    list-style-type: none;
+    margin: 1.2rem;
+}
+
+.tabela-listar-demandas{
+    padding: 1.2rem;
+}
+
+/* .tabela-listar-demandas th{
+    margin: 3rem;
+} */
+
+/* TESTANDO ************ */
+.tabela-listar-demandas {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.tabela-listar-demandas th, .tabela-listar-demandas td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.tabela-listar-demandas th {
+    background-color: #f2f2f2;
+}
+
+.list-link {
+    color: #007bff;
+}
+
+.list-link:hover {
+    color: black;
+    font-weight: 700;
+}
+/* TESTANDO ************ */
+
 
 /* Título da página inicial */
 div.topo{
@@ -107,3 +153,8 @@ footer div.itemRodape{
     padding: 1rem;
 }
 
+
+.detalhe-demanda{
+    margin: auto;
+    padding: 5rem;
+}
