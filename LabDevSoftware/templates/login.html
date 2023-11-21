@@ -9,24 +9,32 @@
     <body>
 
         {% block conteudo %}
-            <div class="wrapper">
-                <div id="formContent">
-                    <div class="">
-                        <p> Sistema de Gestão de Demandas <p>
-                    </div>
+        <div class="wrapper">
+            <div id="formContent">
+                <div>
+                    <p>Sistema de Gestão de Demandas</p>
+                </div>
+                
+                <p>Formulário de Login</p>
+                
+                <form action="{% url 'index' %}" method="post">
+                    {% csrf_token %}
                     
-                    <p> Form de Login </p>
-                    <form action="" method="POST">
-
-                        <input type="submit" class="fadeIn fourth" value="Entrar">
-                    </form>
+                    <label for="username">Nome de Usuário:</label>
+                    <input type="text" id="username" name="username" required>
                     
-                    <div id="formFooter">
-
-                    </div>
+                    <label for="password">Senha:</label>
+                    <input type="password" id="password" name="password" required>
+                    
+                    <input type="submit" class="fadeIn fourth" value="Entrar">
+                </form>
+                
+                <div id="formFooter">
+                    <!-- Adicione links ou informações adicionais aqui -->
                 </div>
             </div>
-        {% endblock %}
+        </div>
+    {% endblock %}
 
     </body>
 

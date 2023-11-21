@@ -7,47 +7,60 @@
 
 {% endblock %}
 
-
 {% block conteudo %}
-    <div>
-        <h3> Criação de Demandas </h3>
-            <p> Form de criação de demandas </p>
-    </div>
-  
-  <form method="post" action="{% url 'demanda-criar' %}">
-    {% csrf_token %}
+    <h3> Criação de Demandas </h3>
+
+    <div class="form-container">
+
+
+        <div>
+            <form method="post" action="{% url 'demanda-criar' %}" class="custom-form">
+                {% csrf_token %}
     
-    {{ form.tituloDemanda.errors }}
-        <label for="{{ form.tituloDemanda.id_for_label }}">Título:</label>
-        {{ form.tituloDemanda }}
+                <div class="form-group">
+                    {{ form.tituloDemanda.errors }}
+                    <label for="{{ form.tituloDemanda.id_for_label }}" class="negrito">Título:</label>
+                    {{ form.tituloDemanda }}
+                </div>
+    
+                <div class="form-group">
+                    {{ form.descricaoDemanda.errors }}
+                    <label for="{{ form.descricaoDemanda.id_for_label }} " class="negrito">Descrição:</label>
+                    {{ form.descricaoDemanda }}
+                </div>
+    
+                <div class="form-group">
+                    {{ form.prioridade.errors }}
+                    <label for="{{ form.prioridade.id_for_label }}" class="negrito">Prioridade:</label>
+                    {{ form.prioridade }}
+                </div>
+    
+                <div class="form-group">
+                    {{ form.status.errors }}
+                    <label for="{{ form.status.id_for_label }}" class="negrito">Status:</label>
+                    {{ form.status }}
+                </div>
+    
+                <div class="form-group">
+                    {{ form.prazo.errors }}
+                    <label for="{{ form.prazo.id_for_label }}" class="negrito">Prazo:</label>
+                    {{ form.prazo }}
+                </div>
+    
+                <div class="form-group">
+                    {{ form.dataDeEncerramento.errors }}
+                    <label for="{{ form.dataDeEncerramento.id_for_label }}" class="negrito">Data de Encerramento:</label>
+                    {{ form.dataDeEncerramento }}
+                </div>
+    
+                <button type="submit" class="btn-submit">Criar Demanda</button>
+            </form>
+        </div>
         
-        {{ form.descricaoDemanda.errors }}
-        <label for="{{ form.descricaoDemanda.id_for_label }}">Descrição:</label>
-        {{ form.descricaoDemanda }}
-        
-        {{ form.prioridade.errors }}
-        <label for="{{ form.prioridade.id_for_label }}">Prioridade:</label>
-        {{ form.prioridade }}
-        
-        {{ form.status.errors }}
-        <label for="{{ form.status.id_for_label }}">Status:</label>
-        {{ form.status }}
-        
-        {{ form.prazo.errors }}
-        <label for="{{ form.prazo.id_for_label }}">Prazo:</label>
-        {{ form.prazo }}
-        
-        {{ form.dataDeEncerramento.errors }}
-        <label for="{{ form.dataDeEncerramento.id_for_label }}">Data de Encerramento:</label>
-        {{ form.dataDeEncerramento }}
-
-    <button type="submit">Criar Demanda</button>
-  </form>
-
-
-    <div style="margin-bottom: .5rem; padding: 0.5%;">
-        <button class="button-options" value="voltar" onclick="history.go(-1)">Voltar</button>
+        <div style="margin-bottom: .5rem; padding: 0.5%;">
+            <button class="button-options" value="voltar" onclick="history.go(-1)">Voltar</button>
+        </div>
     </div>
-
 {% endblock %}
+
 

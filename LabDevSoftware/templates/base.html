@@ -28,10 +28,12 @@
                     </div>
                 </a>
                 <div id="usuarioLogado" class="ml-auto">
+                    {% if user.is_authenticated %}
                     <ul class="opcoesDoMenu">
-                        <li> <p class="usuarioLogado"> NomeUsuario </p> </li>
-                        <li> <p class="usuarioLogado"> Sair </p> </li>
+                        <li> <p class="usuarioLogado"> {{ user.username }} </p> </li>
+                        <li> <a href="{% url 'login' %}">Sair</a> </li>
                     </ul>
+                    {% endif %}
                 </div>
             </nav>
         {% endblock %}
