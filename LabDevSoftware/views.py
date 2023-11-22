@@ -11,10 +11,13 @@ from django.urls import reverse_lazy
 class Login(TemplateView):
         template_name = 'login.html'
 
+
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class PaginaInicial(TemplateView):
         template_name = 'index.html'
 
+
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class DemandaCreateView(CreateView):
         model = Demanda
         template_name = 'demanda-criar.html'
@@ -23,15 +26,20 @@ class DemandaCreateView(CreateView):
         def get_success_url(self):
                 return reverse_lazy('demanda-detail', args=[str(self.object.id)])
 
+
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class DemandaListView(ListView):
         model = Demanda
         template_name = 'demanda-list.html'
 
+
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class DemandaDetailView(DetailView):
         model = Demanda
         template_name = 'demanda-detail.html'
 
 
+@method_decorator(login_required(login_url='login'), name='dispatch')
 class MensagemCreateView(CreateView):
         model = Mensagem
         template_name = 'mensagem.html'
@@ -51,8 +59,7 @@ def criar_demanda(request):
 
 
 """ TESTANDO LOGIN DO DJANGO """
-from django.shortcuts import render, redirect
-from django.contrib.auth import authenticate, login
+""" from django.contrib.auth import authenticate, login
 
 def login_view(request):
     if request.method == 'POST':
@@ -62,9 +69,9 @@ def login_view(request):
 
         if user is not None:
             login(request, user)
-            return redirect('index.html')  # 'pagina-inicial' é o nome da sua URL inicial
+            return redirect('index.html')  # o nome da URL inicial
 
-    return render(request, 'login.html')
+    return render(request, 'login.html') """
 """ FIM DO TESTANDO LOGIN DO DJANGO """
 
 

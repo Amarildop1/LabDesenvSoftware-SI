@@ -26,11 +26,6 @@ ul li{
     padding: 1.2rem;
 }
 
-/* .tabela-listar-demandas th{
-    margin: 3rem;
-} */
-
-/* TESTANDO ************ */
 .tabela-listar-demandas {
     width: 100%;
     border-collapse: collapse;
@@ -53,9 +48,7 @@ ul li{
 
 .list-link:hover {
     color: black;
-    font-weight: 700;
 }
-/* TESTANDO ************ */
 
 
 /* Título da página inicial */
@@ -165,11 +158,11 @@ footer div.itemRodape{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh; /* Ajuste a altura conforme necessário */
+    height: 100vh; 
 }
 
 .custom-form {
-    width: 60%; /* Ajuste a largura conforme necessário */
+    width: 60%;
     text-align: left;
     margin-top: 20px; /* Espaçamento superior entre o título e o formulário */
 }
@@ -186,8 +179,9 @@ footer div.itemRodape{
     cursor: pointer;
 }
 
-/* TESTANDO *************** */
 
 .negrito{
     font-weight: 600;
 }
+
+
