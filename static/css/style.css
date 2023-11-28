@@ -8,6 +8,16 @@ html, body {
     margin: 0;
 }
 
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 90vh;
+}
+
+main {
+    flex: 1;
+}
+
 h3, h4{
     text-align: center;
     margin: 1.2rem;
