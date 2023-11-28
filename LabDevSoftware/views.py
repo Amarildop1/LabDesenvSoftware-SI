@@ -7,10 +7,25 @@ from django.utils.decorators import method_decorator
 from .models import Demanda, Mensagem
 from .forms import DemandaForm
 from django.urls import reverse_lazy
+#imports do login
+from django.contrib.auth.views import LoginView
+from django.contrib import messages
 
-class Login(TemplateView):
+class Login(LoginView):
         template_name = 'login.html'
+        redirect_authenticated_user = True
+    
+        def get_success_url(self):
+                return reverse_lazy('index')
+        
+        def form_invalid(self, form):
+                messages.error(self.request, 'Credenciais inválidas. Por favor, tente novamente.')
+                return super().form_invalid(form)
 
+"""         def form_invalid(self, form):
+                messages.error(self.request, 'Invalid username or password')
+                return self.render_to_response(self.get_context_data(form=form))
+ """
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class PaginaInicial(TemplateView):
@@ -56,22 +71,4 @@ def criar_demanda(request):
         form = DemandaForm()
 
     return render(request, 'demanda-criar.html', {'form': form})
-
-
-""" TESTANDO LOGIN DO DJANGO """
-""" from django.contrib.auth import authenticate, login
-
-def login_view(request):
-    if request.method == 'POST':
-        username = request.POST['username']
-        password = request.POST['password']
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            return redirect('index.html')  # o nome da URL inicial
-
-    return render(request, 'login.html') """
-""" FIM DO TESTANDO LOGIN DO DJANGO """
-
 

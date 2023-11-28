@@ -139,3 +139,6 @@ LOGIN_URL = 'login'
 
 #redirecionada após o logout
 LOGOUT_REDIRECT_URL ='login'
+
+#Sessão Expira ao fechar o navegador
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True

@@ -21,3 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('LabDevSoftware.urls')),
 ]
+
+#Para alterar o título padrão
+admin.site.index_title = "ADM | Gestão de Demandas de Software"
