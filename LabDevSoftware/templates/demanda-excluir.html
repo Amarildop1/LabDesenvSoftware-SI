@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    <title> Confirmação de Exclusão </title>
+{% endblock %}
+
+{% block conteudo %}
+    <div>
+        <h3> Confirmação de Exclusão </h3>
+        <p> Tem certeza de que deseja excluir esta demanda? </p>
+
+        <p> <strong> Título: </strong> {{ titulo_demanda }} </p>
+        <p> <strong> Descrição: </strong> {{ descricao_demanda }} </p>
+        <p> <strong> Status: </strong> {{ status_demanda }} </p>
+
+        <form method="post">
+            {% csrf_token %}
+            <div class="btn-cancelar-ConfirmarExclusao">
+            <div class="">
+                <a href="{% url 'demanda-listar' %}" class="btn-padrao btn-cancel"> Cancelar </a>
+            </div>
+            <div>
+                <button type="submit" class="btn-padrao btn-submit btn-confirmar-exclusao"> Confirmar Exclusão </button>
+            </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+

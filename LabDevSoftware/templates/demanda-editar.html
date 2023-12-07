@@ -60,14 +60,14 @@
     </div>
 
     <script>
-    function confirmSubmit() {
-        return confirm('Deseja realmente salvar as alterações?');
-    }
+        function confirmSubmit() {
+            return confirm('Deseja realmente salvar as alterações?');
+        }
 
-    function redirectToIndex() {
-        // Redirecionar para a página de edição se cancelar no alert
-        window.location.href = "{% url 'editar-demanda' pk=demanda.pk %}";
-    }
+        function redirectToIndex() {
+            // Redirecionar para a página de edição se cancelar no alert
+            window.location.href = "{% url 'editar-demanda' pk=demanda.pk %}";
+        }
     </script>
 
 {% endblock %}

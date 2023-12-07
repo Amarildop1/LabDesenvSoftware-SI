@@ -12,6 +12,8 @@ urlpatterns = [
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
 
     path('demanda/editar/<int:pk>/', EditarDemandaView.as_view(), name='editar-demanda'),
+     path('demanda/excluir/<int:pk>', DemandaDeleteView.as_view(), name='demanda-excluir'),
+
 
 ]
 

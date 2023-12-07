@@ -95,3 +95,21 @@ class EditarDemandaView(UpdateView):
         return Demanda.objects.get(pk=self.kwargs['pk'])
 
 
+from django.urls import reverse_lazy
+from django.views.generic import DeleteView
+from .models import Demanda
+
+class DemandaDeleteView(DeleteView):
+    model = Demanda
+    template_name = 'demanda-excluir.html'  # Crie este template
+    success_url = reverse_lazy('demanda-listar')  # Redireciona para a lista após a exclusão
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo_demanda'] = self.object.tituloDemanda
+        context['descricao_demanda'] = self.object.descricaoDemanda
+        context['status_demanda'] = self.object.status
+        return context
+
+
+

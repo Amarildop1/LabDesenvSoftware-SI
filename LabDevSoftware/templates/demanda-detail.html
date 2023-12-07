@@ -20,6 +20,7 @@
         <p> <strong>Data de Encerramento:</strong> {{ object.dataDeEncerramento }} </p>
 
         <a href="{% url 'editar-demanda' pk=demanda.pk %}" class="btn btn-warning"> Editar </a>
+        <a href="{% url 'demanda-excluir' pk=demanda.pk %}" class="btn btn-danger" onclick="return confirmDelete()"> Excluir </a>
 
     </div>
 
@@ -49,9 +50,9 @@
         </div>
 
 
-        <div>
+<!--         <div>
             <button class="btn-padrao btnVoltar" value="voltar" onclick="history.go(-1)"> Voltar </button>
-        </div>
+        </div> -->
 {% endblock %}
 
 
