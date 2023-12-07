@@ -18,6 +18,9 @@
         <p> <strong>Prazo:</strong> {{ object.prazo }} </p>
         <p> <strong>Data de Criação:</strong> {{ object.dataDeCriacao }} </p>
         <p> <strong>Data de Encerramento:</strong> {{ object.dataDeEncerramento }} </p>
+
+        <a href="{% url 'editar-demanda' pk=demanda.pk %}" class="btn btn-warning"> Editar </a>
+
     </div>
 
     <!-- TESTANDO EXIBIÇÃO DE TAREFAS PARA CADA DEMANDA -->

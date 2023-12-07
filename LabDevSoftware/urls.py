@@ -11,6 +11,7 @@ urlpatterns = [
     path('enviarMensagem', MensagemCreateView.as_view(), name='enviar-mensagem'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
 
+    path('demanda/editar/<int:pk>/', EditarDemandaView.as_view(), name='editar-demanda'),
 
 ]
 
