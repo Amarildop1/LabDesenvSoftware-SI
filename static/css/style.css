@@ -23,8 +23,14 @@ h3, h4{
     margin: 1.2rem;
 }
 
+/* Título do corpo da página de login */
+.titulo-loginPage{
+    /* margin-top: 2rem; */
+}
+
 a{
     text-decoration: none;
+    color: white;
 }
 
 ul li{
@@ -92,9 +98,11 @@ ul.opcoesDoMenu{
     list-style: none;
     margin: .5rem;
 }
+
 ul.opcoesDoMenu li{
     margin-left: 3rem;
 }
+
 
 #usuarioLogado{
     padding-right: 25px;
@@ -105,11 +113,15 @@ p.usuarioLogado{
     margin: 0;
 }
 
-
+.card{
+    max-width: 18rem; 
+    text-align: center;
+}
 
 div#cards-principais a{
     color: white;
 }
+
 
 /* Cards do inicio (Criar, Listar, Mensagem) */
 div.card-body{
@@ -131,12 +143,21 @@ div.cardHover:hover{
 } */
 
 
-#btnVoltar{
-    margin-bottom: .5rem; 
-    padding: 5rem;
-    width: 50rem;
+
+
+footer {
+    display: flex;
+    flex-shrink: 0; /* Para evitar que o rodapé seja encolhido */
+    justify-content: space-between;
+    align-items: center;
+    height: 3rem;
+    background-color: #212529;
+    color: #fff;
+    box-sizing: content-box;
+    
 }
 
+/* 
 footer {
     display: flex;
     justify-content: space-between;
@@ -146,7 +167,7 @@ footer {
     color: #fff;
     margin-top: auto;
     box-sizing: content-box;
-}
+} */
 
 footer > div {
     margin-bottom: 0px;
@@ -162,6 +183,19 @@ footer div.itemRodape{
     padding: 3rem;
 }
 
+
+/* Form de Login */
+#formContent{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 80vh;
+    margin: 0 auto;
+}
+
+
 /* TESTANDO *************** */
 .form-container {
     display: flex;
@@ -169,25 +203,95 @@ footer div.itemRodape{
     align-items: center;
     justify-content: center;
     height: 100vh; 
+    margin: 4rem;
 }
 
+/* Form de Login */
 .custom-form {
     width: 60%;
     text-align: left;
-    margin-top: 20px; /* Espaçamento superior entre o título e o formulário */
+    margin-top: 10rem; /* Espaçamento superior entre o título e o formulário */
+    margin: 3rem;
+    margin-top: 1rem;
 }
 
-.form-group {
-    margin-bottom: 15px; /* Espaçamento inferior entre os grupos de campo */
+/* Form criação de demandas */
+.form-criarDemanda{
+
+
 }
 
-.btn-submit {
+
+.btn-padrao {
     background-color: grey;
     color: white;
     padding: 10px 20px;
     border: none;
     cursor: pointer;
+    border-radius: 5%;
+    font-weight: 600;
 }
+
+.btn-cancel {
+    background-color: grey;
+}
+
+.btn-submit {
+    background-color: rgb(71, 71, 71);
+}
+
+.btnVoltar {
+    margin: 1rem;
+    padding: 5rem;
+    width: 5rem;
+    background-color: white;
+    color: black;
+    padding: 0.5%;
+    border: 1px solid black;
+}
+/* ******************************** */
+
+
+/******* LAYOUT DO LOGIN **********/
+/* labels e o botão entrar */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    /* align-items: flex-start; */      /* Deixava o campo de preencer título e descrição com tamanho pequeno */
+}
+
+
+.form-item{
+    display: flex;
+    justify-content: space-between;
+    margin: 3rem;
+}
+
+.form-group label {
+    font-weight: 700;
+    margin-top: 2rem;
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+
+
+#btn-Entrar {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+.input-login{
+    width: 100%;
+    height: 2.6rem;
+}
+/* ******************************* */
 
 
 .negrito{

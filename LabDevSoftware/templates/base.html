@@ -31,7 +31,7 @@
                     {% if user.is_authenticated %}
                     <ul class="opcoesDoMenu">
                         <li> <p class="usuarioLogado"> {{ user.username }} </p> </li>
-                        <li> <a href="{% url 'logout' %}">Sair</a> </li>
+                        <li> <a href="{% url 'logout' %}"> <strong> Sair </strong></a> </li>
                     </ul>
                     {% endif %}
                 </div>
