@@ -1,11 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 # Create your views here.
 from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 
 from .models import Demanda, Mensagem
-from .forms import DemandaForm
+from .forms import DemandaForm, EncaminharDemandaForm
 from django.urls import reverse_lazy
 #imports do login
 from django.contrib.auth.views import LoginView
@@ -13,11 +13,10 @@ from django.contrib import messages
 
 from django.shortcuts import render
 from django.views.generic.edit import UpdateView
-from .models import Demanda
-from .forms import DemandaForm
-from django.urls import reverse_lazy
-from django.contrib.auth.decorators import login_required
-from django.utils.decorators import method_decorator
+from django.views.generic import DeleteView
+
+from django.views import View
+
 
 
 class Login(LoginView):
@@ -95,14 +94,10 @@ class EditarDemandaView(UpdateView):
         return Demanda.objects.get(pk=self.kwargs['pk'])
 
 
-from django.urls import reverse_lazy
-from django.views.generic import DeleteView
-from .models import Demanda
-
 class DemandaDeleteView(DeleteView):
     model = Demanda
-    template_name = 'demanda-excluir.html'  # Crie este template
-    success_url = reverse_lazy('demanda-listar')  # Redireciona para a lista após a exclusão
+    template_name = 'demanda-excluir.html'
+    success_url = reverse_lazy('demanda-listar')
     
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -110,6 +105,36 @@ class DemandaDeleteView(DeleteView):
         context['descricao_demanda'] = self.object.descricaoDemanda
         context['status_demanda'] = self.object.status
         return context
+
+
+
+# ************* TESTANDO Encaminhar *****************
+def listar_demandas(request):
+    demandas = Demanda.objects.all()
+    return render(request, 'demanda-list.html', {'demandas': demandas})
+
+
+class EncaminharDemandaView(View):
+    template_name = 'encaminhar-demanda.html'
+
+    def get(self, request, pk):
+        demanda = get_object_or_404(Demanda, pk=pk)
+        form = EncaminharDemandaForm()
+        return render(request, self.template_name, {'demanda': demanda, 'form': form})
+
+    def post(self, request, pk):
+        demanda = get_object_or_404(Demanda, pk=pk)
+        form = EncaminharDemandaForm(request.POST)
+        if form.is_valid():
+            # Lógica para encaminhar a demanda (salvar no banco de dados, etc.)
+            destinatario = form.cleaned_data['encaminhar_para']
+            # Atualiza o campo atribuido_a com o usuário Dev selecionado
+            demanda.atribuido_a = destinatario
+            #demanda.encaminhar_para = destinatario  # Atualizar encaminhar_para
+            demanda.save()
+            return redirect('demanda-listar')
+        return render(request, self.template_name, {'demanda': demanda, 'form': form})
+
 
 
 

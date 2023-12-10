@@ -4,10 +4,7 @@
 
 {% block titulo %}
     <title> Lista de Demandas </title>
-
 {% endblock %}
-
-<!-- ADICIONAR BOTÕES DE EDITAR/EXCLUIR E ATRIBUIR AO DEV -->
 
 {% block conteudo %}
     <div>
@@ -18,7 +15,9 @@
                     <th> Título </th>
                     <th> Prioridade </th>
                     <th> Status </th>
-                    <th> Prazo </th>
+                    
+                    <th> Encaminhar </th>
+                    <th> Responsável </th>
                     <th> Ações </th>
                 </tr>
             </thead>
@@ -28,12 +27,21 @@
                         <td><a href="{{ demanda.get_absolute_url }}" class="list-link">{{ demanda.tituloDemanda }}</a></td>
                         <td> {{ demanda.prioridade }} </td>
                         <td> {{ demanda.status }} </td>
-                        <td> {{ demanda.prazo }} </td>
+                        <td>
+                            {% if demanda.encaminhar_para %}
+                                {{ demanda.encaminhar_para.username }}
+                            {% else %}
+                                <a href="{% url 'encaminhar-demanda' pk=demanda.pk %}" class="btn btn-dark"> Encaminhar > </a>
+                            {% endif %}
+                        </td>
+                        <td> {{ demanda.atribuido_a }} </td>
                         <td>
                             <a href="{% url 'editar-demanda' pk=demanda.pk %}" class="btn btn-warning"> Editar </a>
                             <a href="{% url 'demanda-excluir' pk=demanda.pk %}" class="btn btn-danger" onclick="return confirmDelete()"> Excluir </a>
                         </td>
                     </tr>
+
+                    
                 {% endfor %}
             </tbody>
         </table>
@@ -42,13 +50,7 @@
     <div> 
         <button class="btn-padrao btnVoltar" value="voltar" onclick="history.go(-1)"> Voltar </button>
     </div>
-    
 
-<!--     <script>
-        function confirmDelete() {
-            return confirm('Deseja realmente excluir esta demanda?');
-        }
-    </script> -->
     
 {% endblock %}
 

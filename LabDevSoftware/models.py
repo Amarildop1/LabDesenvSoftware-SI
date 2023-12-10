@@ -2,6 +2,7 @@ from django.db import models
 # Create your models here.
 from auditlog.registry import auditlog
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 class Demanda(models.Model):
     tituloDemanda = models.CharField(max_length=255)
@@ -19,6 +20,12 @@ class Demanda(models.Model):
     prazo = models.DateField()
     dataDeCriacao = models.DateTimeField(auto_now_add=True)
     dataDeEncerramento = models.DateTimeField(null=True, blank=True)
+
+    # Usuário atribuído à demanda
+    atribuido_a = models.ForeignKey(User, on_delete=models.CASCADE, related_name='demandas_atribuidas', default=1)
+
+    # Usuário para quem a demanda foi encaminhada
+    encaminhar_para = models.ForeignKey(User, on_delete=models.CASCADE, related_name='demandas_encaminhadas', null=True, blank=True)
 
     class Meta:
         ordering = ['prazo', 'dataDeCriacao']

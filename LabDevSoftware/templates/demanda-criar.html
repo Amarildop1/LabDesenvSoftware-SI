@@ -38,12 +38,6 @@
                     {{ form.status }}
                 </div>
     
-<!--                 <div class="form-group">
-                    {{ form.status.errors }}
-                    <label for="{{ form.status.id_for_label }}" class="negrito">Status:</label>
-                    {{ form.status }}
-                </div> -->
-    
                 <div class="form-item">
                     {{ form.prazo.errors }}
                     <label for="{{ form.prazo.id_for_label }}" class="negrito"> Prazo: </label> &nbsp;
@@ -54,24 +48,15 @@
                     {{ form.dataDeEncerramento }}
                 </div>
     
-<!--                 <div class="form-group">
-                    {{ form.dataDeEncerramento.errors }}
-                    <label for="{{ form.dataDeEncerramento.id_for_label }}" class="negrito">Data de Encerramento:</label>
-                    {{ form.dataDeEncerramento }}
-                </div> -->
-    
                 <div class="button-group">
                     <button class="btn-padrao btn-cancel "> 
                         <a href="{% url 'index' %}">  Cancelar </a>
                     </button>
-                    <button type="submit" class="btn-padrao btn-submit"> Criar Demanda </button>
+                    <button type="submit" class="btn-padrao btn-submit"> Salvar Demanda </button>
                 </div>
             </form>
         </div>
-        
-<!--         <div style="margin-bottom: .5rem; padding: 0.5%;">
-            <button class="button-options" value="voltar" onclick="history.go(-1)">Voltar</button>
-        </div> -->
+
     </div>
 {% endblock %}
 

@@ -21,6 +21,8 @@
 
         <a href="{% url 'editar-demanda' pk=demanda.pk %}" class="btn btn-warning"> Editar </a>
         <a href="{% url 'demanda-excluir' pk=demanda.pk %}" class="btn btn-danger" onclick="return confirmDelete()"> Excluir </a>
+        <a href="{% url 'demanda-listar' %}" class="btn btn-dark"> Todas as Demandas </a>
+        <a href="{% url 'demanda-criar' %}" class="btn btn-primary"> Criar Nova Demanda </a>
 
     </div>
 
