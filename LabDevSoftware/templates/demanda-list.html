@@ -31,7 +31,7 @@
                             {% if demanda.encaminhar_para %}
                                 {{ demanda.encaminhar_para.username }}
                             {% else %}
-                                <a href="{% url 'encaminhar-demanda' pk=demanda.pk %}" class="btn btn-dark"> Encaminhar > </a>
+                                <a href="{% url 'encaminhar-demanda' pk=demanda.pk %}" class="btn btn-dark" > Encaminhar > </a>
                             {% endif %}
                         </td>
                         <td> {{ demanda.atribuido_a }} </td>
@@ -48,7 +48,9 @@
     </div>
 
     <div> 
-        <button class="btn-padrao btnVoltar" value="voltar" onclick="history.go(-1)"> Voltar </button>
+        <button class="btn-padrao btnVoltar"> 
+            <a href="{% url 'index' %}" class="negrito">  Voltar </a>
+        </button>
     </div>
 
     

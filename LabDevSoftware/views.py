@@ -109,31 +109,41 @@ class DemandaDeleteView(DeleteView):
 
 
 # ************* TESTANDO Encaminhar *****************
+from django.contrib.auth.decorators import user_passes_test
+
 def listar_demandas(request):
     demandas = Demanda.objects.all()
     return render(request, 'demanda-list.html', {'demandas': demandas})
 
 
+@method_decorator(user_passes_test(lambda u: u.groups.filter(name='Avaliador').exists(), login_url='login'), name='dispatch')
 class EncaminharDemandaView(View):
     template_name = 'encaminhar-demanda.html'
 
     def get(self, request, pk):
         demanda = get_object_or_404(Demanda, pk=pk)
         form = EncaminharDemandaForm()
+        is_avaliador = request.user.groups.filter(name='Avaliador').exists()
         return render(request, self.template_name, {'demanda': demanda, 'form': form})
 
     def post(self, request, pk):
         demanda = get_object_or_404(Demanda, pk=pk)
         form = EncaminharDemandaForm(request.POST)
+        is_avaliador = request.user.groups.filter(name='Avaliador').exists()  # Adicione isso aqui
+
         if form.is_valid():
             # Lógica para encaminhar a demanda (salvar no banco de dados, etc.)
             destinatario = form.cleaned_data['encaminhar_para']
-            # Atualiza o campo atribuido_a com o usuário Dev selecionado
-            demanda.atribuido_a = destinatario
-            #demanda.encaminhar_para = destinatario  # Atualizar encaminhar_para
-            demanda.save()
-            return redirect('demanda-listar')
-        return render(request, self.template_name, {'demanda': demanda, 'form': form})
+
+            # Verifica se o destinatário é um avaliador
+            if destinatario.groups.filter(name='Avaliador').exists():
+                # Atualiza o campo atribuído_a com o usuário Dev selecionado
+                demanda.atribuido_a = destinatario
+                demanda.save()
+                return redirect('demanda-listar')
+            else:
+                messages.error(request, 'Somente avaliadores podem ser atribuídos a uma demanda.')
+        return render(request, self.template_name, {'demanda': demanda, 'form': form, 'is_avaliador': is_avaliador})
 
 
 
