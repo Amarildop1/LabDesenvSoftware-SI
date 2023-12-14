@@ -1,19 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
 # Create your views here.
-from django.views.generic import TemplateView, ListView, DetailView, CreateView
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 from django.utils.decorators import method_decorator
-
-from .models import Demanda, Mensagem
-from .forms import DemandaForm, EncaminharDemandaForm
 from django.urls import reverse_lazy
-#imports do login
+#import do login
 from django.contrib.auth.views import LoginView
 from django.contrib import messages
 
-from django.shortcuts import render
+from django.views.generic import TemplateView, ListView, DetailView, CreateView, DeleteView
 from django.views.generic.edit import UpdateView
-from django.views.generic import DeleteView
+
+from .models import Demanda, Mensagem
+from .forms import DemandaForm, EncaminharDemandaForm, TarefaForm
 
 from django.views import View
 
@@ -30,10 +29,10 @@ class Login(LoginView):
                 messages.error(self.request, 'Credenciais inválidas. Por favor, tente novamente.')
                 return super().form_invalid(form)
 
-"""         def form_invalid(self, form):
-                messages.error(self.request, 'Invalid username or password')
+        def form_invalid(self, form):
+                messages.error(self.request, 'Usuário e(ou) senha inválidos!')
                 return self.render_to_response(self.get_context_data(form=form))
- """
+
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
 class PaginaInicial(TemplateView):
@@ -54,6 +53,7 @@ class DemandaCreateView(CreateView):
 class DemandaListView(ListView):
         model = Demanda
         template_name = 'demanda-list.html'
+
 
 
 @method_decorator(login_required(login_url='login'), name='dispatch')
@@ -108,9 +108,6 @@ class DemandaDeleteView(DeleteView):
 
 
 
-# ************* TESTANDO Encaminhar *****************
-from django.contrib.auth.decorators import user_passes_test
-
 def listar_demandas(request):
     demandas = Demanda.objects.all()
     return render(request, 'demanda-list.html', {'demandas': demandas})
@@ -124,12 +121,12 @@ class EncaminharDemandaView(View):
         demanda = get_object_or_404(Demanda, pk=pk)
         form = EncaminharDemandaForm()
         is_avaliador = request.user.groups.filter(name='Avaliador').exists()
-        return render(request, self.template_name, {'demanda': demanda, 'form': form})
+        return render(request, self.template_name, {'demanda': demanda, 'form': form, 'is_avaliador': is_avaliador})
 
     def post(self, request, pk):
         demanda = get_object_or_404(Demanda, pk=pk)
         form = EncaminharDemandaForm(request.POST)
-        is_avaliador = request.user.groups.filter(name='Avaliador').exists()  # Adicione isso aqui
+        is_avaliador = request.user.groups.filter(name='Avaliador').exists()
 
         if form.is_valid():
             # Lógica para encaminhar a demanda (salvar no banco de dados, etc.)
@@ -146,5 +143,28 @@ class EncaminharDemandaView(View):
         return render(request, self.template_name, {'demanda': demanda, 'form': form, 'is_avaliador': is_avaliador})
 
 
+@login_required
+def criar_tarefa(request, demanda_id):
+    demanda = get_object_or_404(Demanda, pk=demanda_id)
+
+    if request.method == 'POST':
+        form = TarefaForm(request.POST)
+        if form.is_valid():
+            tarefa = form.save(commit=False)
+            tarefa.demanda = demanda
+            tarefa.save()
+            return redirect('demanda-detail', pk=demanda_id)
+    else:
+        form = TarefaForm()
+
+    return render(request, 'tarefa-criar.html', {'form': form, 'demanda': demanda})
+
+
+@login_required
+def detalhe_demanda(request, pk):
+    demanda = Demanda.objects.get(pk=pk)
+    tarefas = demanda.tarefas.all()  # nome do relacionamento
+
+    return render(request, 'demanda-detail.html', {'demanda': demanda, 'tarefas': tarefas})
 
 

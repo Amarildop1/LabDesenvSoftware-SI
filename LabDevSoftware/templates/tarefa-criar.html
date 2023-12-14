@@ -3,17 +3,17 @@
 {% load static %}
 
 {% block titulo %}
-    <title> Enviar Mensagem </title>
+    <title> Criação de Tarefas </title>
 {% endblock %}
 
 
 {% block conteudo %}
-    <h3> Enviar Mensagem </h3>
+    <h3> Criar Tarefa </h3>
 
     <div class="form-container">
 
-        <div class="form-EnviarMensagem">
-            <form method="post" action="">
+        <div class="form-criarTarefa">
+            <form method="post" action="{% url 'criar_tarefa' demanda_id=demanda.id %}">
                 {% csrf_token %}
 
                 <div class="form-group form-item">
@@ -33,10 +33,11 @@
                         <a href="{% url 'index' %}">  Cancelar </a>
                     </button>
 
-                    <button type="submit" class="btn-padrao btn-submit"> Enviar Mensagem </button>
+                    <button type="submit" class="btn-padrao btn-submit"> Criar Tarefa </button>
                 </div>
             </form>
-        </div> <!-- Final div class="form-EnviarMensagem" -->
+
+        </div> <!-- Final div class="form-criarTarefa" -->
 
     </div>
 

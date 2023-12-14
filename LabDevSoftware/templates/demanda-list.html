@@ -9,6 +9,7 @@
 {% block conteudo %}
     <div>
         <h3> Lista de todas as Demandas </h3>
+
         <table class="tabela-listar-demandas">
             <thead>
                 <tr>
@@ -21,6 +22,7 @@
                     <th> Ações </th>
                 </tr>
             </thead>
+
             <tbody>
                 {% for demanda in object_list %}
                     <tr>
@@ -41,9 +43,8 @@
                             <a href="{% url 'demanda-excluir' pk=demanda.pk %}" class="btn btn-outline-danger" onclick="return confirmDelete()"> Excluir </a>
                         </td>
                     </tr>
-
-                    
                 {% endfor %}
+
             </tbody>
         </table>
     </div>

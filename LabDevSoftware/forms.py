@@ -1,7 +1,7 @@
-# forms.py
-
 from django import forms
-from .models import Demanda
+from django.contrib.auth.models import User
+from .models import Demanda, Tarefa
+
 
 class DemandaForm(forms.ModelForm):
     class Meta:
@@ -10,9 +10,6 @@ class DemandaForm(forms.ModelForm):
         exclude = ['dataDeCriacao']
 
 
-# ********************* TESTANDO ****************
-from django.contrib.auth.models import User
-
 class EncaminharDemandaForm(forms.ModelForm):
     class Meta:
         model = Demanda
@@ -20,8 +17,12 @@ class EncaminharDemandaForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.fields['encaminhar_para'].queryset = User.objects.all()
+        self.fields['encaminhar_para'].queryset = User.objects.exclude(username='admin')
 
 
+class TarefaForm(forms.ModelForm):
+    class Meta:
+        model = Tarefa
+        fields = ['tituloTarefa']
 
 

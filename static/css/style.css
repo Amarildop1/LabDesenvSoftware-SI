@@ -23,11 +23,6 @@ h3, h4{
     margin: 1.2rem;
 }
 
-/* Título do corpo da página de login */
-.titulo-loginPage{
-    /* margin-top: 2rem; */
-}
-
 a{
     text-decoration: none;
     color: white;
@@ -137,12 +132,6 @@ div.cardHover:hover{
     color: black;
 }
 
-/* div.cardHover2:hover{
-    background-color: #6C757D;
-    color: white;
-} */
-
-
 
 
 footer {
@@ -156,18 +145,6 @@ footer {
     box-sizing: content-box;
     
 }
-
-/* 
-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 3rem;
-    background-color: #212529;
-    color: #fff;
-    margin-top: auto;
-    box-sizing: content-box;
-} */
 
 footer > div {
     margin-bottom: 0px;
@@ -196,7 +173,6 @@ footer div.itemRodape{
 }
 
 
-/* TESTANDO *************** */
 .form-container {
     display: flex;
     flex-direction: column;
@@ -215,10 +191,11 @@ footer div.itemRodape{
     margin-top: 1rem;
 }
 
-/* Form criação de demandas */
-.form-criarDemanda{
 
 
+.btn-div-cancelar{
+    display: flex;
+    align-items: center;
 }
 
 
@@ -248,7 +225,6 @@ footer div.itemRodape{
     display: flex;
     justify-content: space-between;
     width: 30%;
-    border: 1px solid red;
     margin-top: 5rem;
     margin-bottom: 12rem;
 
@@ -263,6 +239,11 @@ footer div.itemRodape{
     padding: 0.5%;
     border: 1px solid black;
 }
+
+.btnVoltar:hover{
+    background-color: #808080;
+    border-color: #808080;
+}
 /* ******************************** */
 
 
@@ -271,7 +252,6 @@ footer div.itemRodape{
 .form-group {
     display: flex;
     flex-direction: column;
-    /* align-items: flex-start; */      /* Deixava o campo de preencer título e descrição com tamanho pequeno */
 }
 
 

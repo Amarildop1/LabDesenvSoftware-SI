@@ -4,12 +4,13 @@
 
 {% block titulo %}
     <title> Detalhe da Demanda </title>
-
 {% endblock %}
 
 
 {% block conteudo %}
+
     <h3> Detalhamento da Demanda </h3>
+
     <div class="detalhe-demanda">        
         <p> <strong>Título:</strong> {{ object.tituloDemanda }} </p>
         <p> <strong>Descrição:</strong> {{ object.descricaoDemanda }} </p>
@@ -19,42 +20,61 @@
         <p> <strong>Data de Criação:</strong> {{ object.dataDeCriacao }} </p>
         <p> <strong>Data de Encerramento:</strong> {{ object.dataDeEncerramento }} </p>
 
-        <a href="{% url 'editar-demanda' pk=demanda.pk %}" class="btn btn-warning"> Editar </a>
-        <a href="{% url 'demanda-excluir' pk=demanda.pk %}" class="btn btn-danger" onclick="return confirmDelete()"> Excluir </a>
-        <a href="{% url 'demanda-listar' %}" class="btn btn-dark"> Todas as Demandas </a>
-        <a href="{% url 'demanda-criar' %}" class="btn btn-primary"> Criar Nova Demanda </a>
-
+        <a href="{% url 'editar-demanda' pk=demanda.pk %}" class="btn btn-outline-warning"> Editar </a>
+        &nbsp;&nbsp;
+        <a href="{% url 'demanda-excluir' pk=demanda.pk %}" class="btn btn-outline-danger" onclick="return confirmDelete()"> Excluir </a>
+        &nbsp;&nbsp;
+        <a href="{% url 'demanda-listar' %}" class="btn btn-outline-dark"> Todas as Demandas </a>
+        &nbsp;&nbsp;
+        <a href="{% url 'demanda-criar' %}" class="btn btn-outline-primary"> Criar Nova Demanda </a>
+        &nbsp;&nbsp;
+        <a href="{% url 'criar_tarefa' demanda_id=demanda.pk %}" class="btn btn-primary"> CRIAR TAREFA </a>
     </div>
 
-    <!-- TESTANDO EXIBIÇÃO DE TAREFAS PARA CADA DEMANDA -->
-        <div>
-            <h4> Tarefas dessa Demanda: </h4>
-            <table class="tabela-listar-demandas">
-                <thead>
+
+    <!-- EXIBIÇÃO DE TAREFAS PARA CADA DEMANDA -->
+    <div>
+        <h4> Tarefas dessa Demanda: </h4>
+
+        <table class="tabela-listar-demandas">
+            <thead>
+                <tr>
+                    <th> Tarefa </th>
+                    <th> Status </th>
+                    <th> Equipe/Dev </th>
+                </tr>
+            </thead> 
+
+            <tbody>
+                {% for tarefa in demanda.tarefa_set.all %}
                     <tr>
-                        <th> Tarefa </th>
-                        <th> Status </th>
-                        <th> Equipe/Dev </th>
+                        <td><a href="{{ demanda.get_absolute_url }}" class="list-link">{{ tarefa.tituloTarefa }}</a></td>
+                        <td> {{ tarefa.status }} </td>
+                        <td>
+                            {% if tarefa.atribuido_a %}
+                                {{ tarefa.atribuido_a.username }}
+                            {% else %}
+                                Não atribuído
+                            {% endif %}
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    {% for demanda in object_list %}
+
+                    {% empty %}
                         <tr>
-                            <td><a href="{{ demanda.get_absolute_url }}" class="list-link">{{ demanda.tituloDemanda }}</a></td>
-                            <td> {{ demanda.descricaoDemanda }} </td>
-                            <td> {{ demanda.status }} </td>
-                            <td> {{ demanda.prazo }} </td>
+                            <td colspan="3">Nenhuma tarefa associada a esta demanda.</td>
                         </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            <!-- Adicionar botão de criar tarefas -->
-        </div>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 
 
-<!--         <div>
-            <button class="btn-padrao btnVoltar" value="voltar" onclick="history.go(-1)"> Voltar </button>
-        </div> -->
+    <div> 
+        <button class="btn-padrao btnVoltar"> 
+            <a href="{% url 'demanda-listar' %}" class="negrito">  Voltar </a>
+        </button>
+    </div>
+
 {% endblock %}
 
 

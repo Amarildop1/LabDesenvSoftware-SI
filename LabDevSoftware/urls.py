@@ -16,6 +16,8 @@ urlpatterns = [
 
     path('demanda/encaminhar/<int:pk>/', EncaminharDemandaView.as_view(), name='encaminhar-demanda'),
 
+    path('criar_tarefa/<int:demanda_id>/', criar_tarefa, name='criar_tarefa'),
+
 
 ]
 
