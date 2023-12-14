@@ -36,7 +36,14 @@
                                 <a href="{% url 'encaminhar-demanda' pk=demanda.pk %}" class="btn btn-outline-dark" > Encaminhar > </a>
                             {% endif %}
                         </td>
-                        <td> {{ demanda.atribuido_a }} </td>
+                        <!-- <td> {{ demanda.atribuido_a }} </td> -->
+                        <td> 
+                            {% if demanda.atribuido_a %}
+                                {{ demanda.demanda.atribuido_a.username }}
+                            {% else %}
+                                Não há.
+                            {% endif %}
+                        </td>
                         <td>
                             <a href="{% url 'editar-demanda' pk=demanda.pk %}" class="btn btn-outline-warning"> Editar </a>
                             &nbsp; &nbsp; &nbsp; 

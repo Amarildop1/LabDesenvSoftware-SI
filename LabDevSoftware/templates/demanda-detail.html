@@ -50,11 +50,18 @@
                     <tr>
                         <td><a href="{{ demanda.get_absolute_url }}" class="list-link">{{ tarefa.tituloTarefa }}</a></td>
                         <td> {{ tarefa.status }} </td>
-                        <td>
+<!--                         <td>
                             {% if tarefa.atribuido_a %}
                                 {{ tarefa.atribuido_a.username }}
                             {% else %}
                                 Não atribuído
+                            {% endif %}
+                        </td> -->
+                        <td> <!-- Tentando mostrar quem criou a tarefa -->
+                            {% if demanda.encaminhar_para %}
+                                {{ demanda.encaminhar_para.username }}
+                            {% else %}
+                                Tarefa órfão! 
                             {% endif %}
                         </td>
                     </tr>

@@ -16,15 +16,15 @@ class Demanda(models.Model):
         ('urgente', 'Urgente'),
         ('maxima', 'Máxima'),
     ]
-    prioridade = models.CharField(max_length=20, choices=PRIORITY_CHOICES)
+    prioridade = models.CharField(max_length=20, choices=PRIORITY_CHOICES, default='Baixa')
 
-    status = models.CharField(max_length=20, choices=[('pendente', 'Pendente'), ('em_andamento', 'Em Andamento'), ('concluida', 'Concluída')])
+    status = models.CharField(max_length=20, choices=[('pendente', 'Pendente'), ('em_andamento', 'Em Andamento'), ('concluida', 'Concluída')], default='Pendente')
     prazo = models.DateField()
     dataDeCriacao = models.DateTimeField(auto_now_add=True)
     dataDeEncerramento = models.DateTimeField(null=True, blank=True)
 
     # Usuário atribuído à demanda
-    atribuido_a = models.ForeignKey(User, on_delete=models.CASCADE, related_name='demandas_atribuidas', default=3)
+    atribuido_a = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, related_name='demandas_atribuidas')
 
     # Usuário para quem a demanda foi encaminhada
     encaminhar_para = models.ForeignKey(User, on_delete=models.CASCADE, related_name='demandas_encaminhadas', null=True, blank=True)
@@ -61,7 +61,15 @@ auditlog.register(Mensagem)
 class Tarefa(models.Model):
     demanda = models.ForeignKey('Demanda', on_delete=models.CASCADE)
     tituloTarefa = models.CharField(max_length=40, verbose_name='Titulo')
-    #status = models.CharField(max_length=20, choices=[('pendente', 'Pendente'), ('em_andamento', 'Em Andamento'), ('concluida', 'Concluída')])
+
+    STATUS_CHOICES = [
+        ('PENDENTE', 'Pendente'),
+        ('CONCLUÍDA', 'Concluída'),
+        # Adicione outros status, se necessário
+    ]
+    
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='PENDENTE')
+    atribuido_a = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
 
     class Meta:
         ordering = ['tituloTarefa']
