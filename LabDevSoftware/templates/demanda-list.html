@@ -31,13 +31,14 @@
                             {% if demanda.encaminhar_para %}
                                 {{ demanda.encaminhar_para.username }}
                             {% else %}
-                                <a href="{% url 'encaminhar-demanda' pk=demanda.pk %}" class="btn btn-dark" > Encaminhar > </a>
+                                <a href="{% url 'encaminhar-demanda' pk=demanda.pk %}" class="btn btn-outline-dark" > Encaminhar > </a>
                             {% endif %}
                         </td>
                         <td> {{ demanda.atribuido_a }} </td>
                         <td>
-                            <a href="{% url 'editar-demanda' pk=demanda.pk %}" class="btn btn-warning"> Editar </a>
-                            <a href="{% url 'demanda-excluir' pk=demanda.pk %}" class="btn btn-danger" onclick="return confirmDelete()"> Excluir </a>
+                            <a href="{% url 'editar-demanda' pk=demanda.pk %}" class="btn btn-outline-warning"> Editar </a>
+                            &nbsp; &nbsp; &nbsp; 
+                            <a href="{% url 'demanda-excluir' pk=demanda.pk %}" class="btn btn-outline-danger" onclick="return confirmDelete()"> Excluir </a>
                         </td>
                     </tr>
 
