@@ -63,6 +63,7 @@ class Tarefa(models.Model):
     tituloTarefa = models.CharField(max_length=40, verbose_name='Titulo')
 
     STATUS_CHOICES = [
+        ('EM ANDAMENTO', 'Em Andamento'),
         ('PENDENTE', 'Pendente'),
         ('CONCLUÍDA', 'Concluída'),
         # Adicione outros status, se necessário

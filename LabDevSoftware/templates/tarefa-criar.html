@@ -9,9 +9,9 @@
 
 {% block conteudo %}
 
-    <h3> Criar Tarefa </h3>
+    <h3> Criando Tarefa </h3>
 
-    <div class="form-container">
+    <div class="form-container containerCriarTarefa">
 
         <div class="form-criarTarefa">
             <form method="post" action="{% url 'criar_tarefa' demanda_id=demanda.id %}">
@@ -19,21 +19,21 @@
 
                 <div class="form-group form-item">
                     {{ form.tituloTarefa.errors }}
-                        <label for="{{ form.tituloTarefa.id_for_label }}" class="negrito"> Título: </label>
+                        <label for="{{ form.tituloTarefa.id_for_label }}" class="negrito"> Tarefa: </label>
                     {{ form.tituloTarefa }}
                 </div>
 
-<!--                 <div class="form-group form-item">
-                    {{ form.conteudo.errors }}
-                        <label for="{{ form.descricaoDemanda.id_for_label }} " class="negrito"> Conteudo: </label>
-                    {{ form.conteudo }}
-                </div> -->
+                <div class="form-group form-item">
+                    {{ form.status.errors }}
+                        <label for="{{ form.descricaoDemanda.id_for_label }} " class="negrito"> Status: </label>
+                    {{ form.status }}
+                </div>
 
                 <div class="button-group">
                     <button class="btn-padrao btn-cancel "> 
                         <a href="{% url 'demanda-listar' %}">  Cancelar </a>
                     </button>
-
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     <button type="submit" class="btn-padrao btn-submit"> Salvar Tarefa </button>
                 </div>
             </form>

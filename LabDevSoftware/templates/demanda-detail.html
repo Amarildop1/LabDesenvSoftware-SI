@@ -59,14 +59,14 @@
                             {% endif %}
                         </td> -->
                         <td> <!-- Tentando mostrar quem criou a tarefa -->
-                            {% if demanda.encaminhar_para %}
-                                {{ demanda.encaminhar_para.username }}
+                            {% if tarefa.encaminhar_para %}
+                                {{ tarefa.encaminhar_para.username }}
                             {% else %}
                                 Tarefa órfão! 
                             {% endif %}
                         </td>
                         <td>
-                            <a href="{% url 'tarefa-excluir' pk=demanda.pk %}" class="btn btn-outline-danger" onclick="return confirmDelete()"> Excluir </a>
+                            <a href="{% url 'tarefa-excluir' pk=tarefa.pk %}" class="btn btn-outline-danger" onclick="return confirmDelete()"> Excluir </a>
                         </td>
                     </tr>
 

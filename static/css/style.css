@@ -296,8 +296,14 @@ footer div.itemRodape{
 
 /* ESTILO DO FORM CRIAR TAREFA */
 
+.form-criarTarefa{
+    padding-bottom: 0 ;
+}
 
-
+.containerCriarTarefa{
+    margin-top: 0;
+    margin-bottom: 0;
+}
 
 
 /* ******************* */
