@@ -30,7 +30,7 @@
                 <div id="usuarioLogado" class="ml-auto">
                     {% if user.is_authenticated %}
                     <ul class="opcoesDoMenu">
-                        <li> <p class="usuarioLogado"> {{ user.username }} </p> </li>
+                        <li> <p class="usuarioLogado"> {{ user.first_name }} </p> </li>
                         <li> <a href="{% url 'logout' %}"> <strong> Sair </strong></a> </li>
                     </ul>
                     {% endif %}

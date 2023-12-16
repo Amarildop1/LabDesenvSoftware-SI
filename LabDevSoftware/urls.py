@@ -1,6 +1,7 @@
 from django.urls import path
 from .views import *
 from django.contrib.auth import views as auth_views
+from django.contrib import admin
 
 urlpatterns = [
     path('', Login.as_view(), name='login'),
@@ -17,7 +18,11 @@ urlpatterns = [
     path('demanda/encaminhar/<int:pk>/', EncaminharDemandaView.as_view(), name='encaminhar-demanda'),
 
     path('criar_tarefa/<int:demanda_id>/', criar_tarefa, name='criar_tarefa'),
+    path('tarefa/excluir/<int:pk>', DemandaDeleteView.as_view(), name='tarefa-excluir'),
 
 
 ]
+
+
+admin.site.site_header = "Sistema de Gestão de Demandas de Software - Administração"
 

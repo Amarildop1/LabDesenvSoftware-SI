@@ -29,17 +29,12 @@
                         <td><a href="{{ demanda.get_absolute_url }}" class="list-link">{{ demanda.tituloDemanda }}</a></td>
                         <td> {{ demanda.prioridade }} </td>
                         <td> {{ demanda.status }} </td>
-                        <td>
-                            {% if demanda.encaminhar_para %}
-                                {{ demanda.encaminhar_para.username }}
-                            {% else %}
-                                <a href="{% url 'encaminhar-demanda' pk=demanda.pk %}" class="btn btn-outline-dark" > Encaminhar > </a>
-                            {% endif %}
+                        <td> <!-- Deixei sempre aparecendo o botão para o caso de querer trocar o responsável -->
+                            <a href="{% url 'encaminhar-demanda' pk=demanda.pk %}" class="btn btn-outline-dark" > Encaminhar > </a>
                         </td>
-                        <!-- <td> {{ demanda.atribuido_a }} </td> -->
                         <td> 
                             {% if demanda.atribuido_a %}
-                                {{ demanda.demanda.atribuido_a.username }}
+                                {{ demanda.atribuido_a.username }}
                             {% else %}
                                 Não há.
                             {% endif %}
@@ -61,6 +56,8 @@
             <a href="{% url 'index' %}" class="negrito">  Voltar </a>
         </button>
     </div>
+
+    
 
     
 {% endblock %}

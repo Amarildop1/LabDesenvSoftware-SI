@@ -11,11 +11,10 @@ from django.contrib import messages
 from django.views.generic import TemplateView, ListView, DetailView, CreateView, DeleteView
 from django.views.generic.edit import UpdateView
 
-from .models import Demanda, Mensagem
+from .models import Demanda, Mensagem, Tarefa
 from .forms import DemandaForm, EncaminharDemandaForm, TarefaForm
 
 from django.views import View
-
 
 
 class Login(LoginView):
@@ -113,6 +112,7 @@ def listar_demandas(request):
     return render(request, 'demanda-list.html', {'demandas': demandas})
 
 
+# Somente avaliador pode encaminhar demanda, esse user_passes_test garante isso
 @method_decorator(user_passes_test(lambda u: u.groups.filter(name='Avaliador').exists(), login_url='login'), name='dispatch')
 class EncaminharDemandaView(View):
     template_name = 'encaminhar-demanda.html'
@@ -120,27 +120,31 @@ class EncaminharDemandaView(View):
     def get(self, request, pk):
         demanda = get_object_or_404(Demanda, pk=pk)
         form = EncaminharDemandaForm()
-        is_avaliador = request.user.groups.filter(name='Avaliador').exists()
-        return render(request, self.template_name, {'demanda': demanda, 'form': form, 'is_avaliador': is_avaliador})
+        is_desenvolvedor = request.user.groups.filter(name='Desenvolvedor').exists()
+        return render(request, self.template_name, {'demanda': demanda, 'form': form, 'is_desenvolvedor': is_desenvolvedor})
 
     def post(self, request, pk):
         demanda = get_object_or_404(Demanda, pk=pk)
         form = EncaminharDemandaForm(request.POST)
-        is_avaliador = request.user.groups.filter(name='Avaliador').exists()
+        is_desenvolvedor = request.user.groups.filter(name='Desenvolvedor').exists()
 
         if form.is_valid():
-            # Lógica para encaminhar a demanda (salvar no banco de dados, etc.)
+            # Lógica para encaminhar a demanda (salvar no banco de dados)
             destinatario = form.cleaned_data['encaminhar_para']
 
-            # Verifica se o destinatário é um avaliador
-            if destinatario.groups.filter(name='Avaliador').exists():
+            # Verifica se o destinatário é um desenvolvedor
+            if destinatario.groups.filter(name='Desenvolvedor').exists():
                 # Atualiza o campo atribuído_a com o usuário Dev selecionado
                 demanda.atribuido_a = destinatario
                 demanda.save()
                 return redirect('demanda-listar')
             else:
-                messages.error(request, 'Somente avaliadores podem ser atribuídos a uma demanda.')
-        return render(request, self.template_name, {'demanda': demanda, 'form': form, 'is_avaliador': is_avaliador})
+                error_message = 'Só pode encaminhar demanda para desenvolvedores.'
+                messages.error(request, 'Somente desenvolvedores podem ser atribuídos a uma demanda.')
+
+        return render(request, self.template_name, {'demanda': demanda, 'form': form, 'is_desenvolvedor': is_desenvolvedor, 'error_message': error_message})
+
+
 
 
 @login_required
@@ -167,4 +171,16 @@ def detalhe_demanda(request, pk):
 
     return render(request, 'demanda-detail.html', {'demanda': demanda, 'tarefas': tarefas})
 
+
+
+class TarefaDeleteView(DeleteView):
+    model = Tarefa
+    template_name = 'tarefa-excluir.html'
+    success_url = reverse_lazy('demanda-listar')
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['titulo_tarefa'] = self.object.tituloTarefa
+        context['status_tarefa'] = self.object.status
+        return context
 

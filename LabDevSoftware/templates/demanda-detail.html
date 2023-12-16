@@ -28,7 +28,7 @@
         &nbsp;&nbsp;
         <a href="{% url 'demanda-criar' %}" class="btn btn-outline-primary"> Criar Nova Demanda </a>
         &nbsp;&nbsp;
-        <a href="{% url 'criar_tarefa' demanda_id=demanda.pk %}" class="btn btn-primary"> CRIAR TAREFA </a>
+        <a href="{% url 'criar_tarefa' demanda_id=demanda.pk %}" class="btn btn-outline-success"> CRIAR TAREFA </a>
     </div>
 
 
@@ -42,13 +42,14 @@
                     <th> Tarefa </th>
                     <th> Status </th>
                     <th> Equipe/Dev </th>
+                    <th> Ações </th>
                 </tr>
             </thead> 
 
             <tbody>
                 {% for tarefa in demanda.tarefa_set.all %}
                     <tr>
-                        <td><a href="{{ demanda.get_absolute_url }}" class="list-link">{{ tarefa.tituloTarefa }}</a></td>
+                        <td> {{ tarefa.tituloTarefa }} </td>
                         <td> {{ tarefa.status }} </td>
 <!--                         <td>
                             {% if tarefa.atribuido_a %}
@@ -64,11 +65,14 @@
                                 Tarefa órfão! 
                             {% endif %}
                         </td>
+                        <td>
+                            <a href="{% url 'tarefa-excluir' pk=demanda.pk %}" class="btn btn-outline-danger" onclick="return confirmDelete()"> Excluir </a>
+                        </td>
                     </tr>
 
                     {% empty %}
                         <tr>
-                            <td colspan="3">Nenhuma tarefa associada a esta demanda.</td>
+                            <td colspan="4">Nenhuma tarefa associada a esta demanda.</td>
                         </tr>
                 {% endfor %}
             </tbody>

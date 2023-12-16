@@ -5,13 +5,33 @@
 {% endblock %}
 
 {% block conteudo %}
-    <h3> Encaminhar Demanda </h3>
+    <h3> Encaminhando Demanda </h3>
 
-    <form method="post" action="">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary"> Encaminhar </button>
-    </form>
+    <div class="formEncaminharDemanda">
+        
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+
+            <button class="btn btn-outline-secondary"> 
+                <a href="{% url 'demanda-listar' %}" class="negrito"> Voltar </a>
+            </button>
+            
+            <button type="submit" class="btn btn-outline-secondary negrito"> Encaminhar </button>
+        </form>
+
+    </div>
+
+    {% if error_message %}
+    <script>
+        alert("{{ error_message }}");
+    </script>
+    {% endif %}
+
+
+
+
 
 {% endblock %}
+
 
