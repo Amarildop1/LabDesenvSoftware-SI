@@ -10,3 +10,34 @@ O **Avaliador** tem a responsabilidade de analisar a necessidade do pedido e enc
 
 O **Desenvolvedor** recebe as demandas cadastradas pelo Cliente e
 encaminhadas pelo Avaliador. Ele pode trocar mensagens com o cliente e criar tarefas para detalhar as demandas pelas quais é responsável.
+
+------
+
+<br>
+
+#### Telas do Sistema:
+
+<br>
+
+Login:
+<img src="./login.png" width="800" height="500">
+
+<br>
+
+Início:
+<img src="./inicio.png" width="800" height="500">
+
+<br>
+
+Criação de Demanda:
+<img src="./criacaoDeDemandas.png" width="800" height="500">
+
+<br>
+
+Lista de Demandas:
+<img src="./listaDeDemandas.png" width="800" height="500">
+
+<br>
+
+Detalhamento de Demanda:
+<img src="./detalhamentoDaDemanda.png" width="800" height="500">
